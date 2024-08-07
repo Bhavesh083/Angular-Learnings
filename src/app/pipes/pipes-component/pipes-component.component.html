@@ -1,0 +1,21 @@
+<hr>
+<b style="background-color: blanchedalmond;padding: 2px 4px 2px 4px;">Pipes</b> <br>
+
+
+<p style="color: rgb(119, 105, 88); ">-------Builtin Pipes-------</p>
+
+<p>name in lowercase: {{pName | lowercase }}</p>
+
+<p>display object: {{pObj | json}}</p>
+
+<p>currency as : {{pAmount | currency: 'INR'}}</p>
+
+
+<p style="color: rgb(119, 105, 88); ">-------Custom Pipes-------</p>
+
+<p>Size of the array is:- {{ pNumbers | getSize}}</p>
+
+<p>Show values in array which are between 3 & 21:- 
+    <span *ngFor="let n of (pNumbers |  multiplyEach : 3 : 21); let i as index">{{n}} </span>
+
+</p>

@@ -1,0 +1,9 @@
+<hr><b style="background-color: blanchedalmond;padding: 2px 4px 2px 4px;">Components & Interpolation</b> 
+<p>I'm parent Component:</p>
+<h4>My name is {{name.toUpperCase()}} & I'm {{age}} years old</h4>
+<h5>I work for {{office}} </h5>
+<h6>My NPS score is: {{points+1}} </h6>
+<button (click)="giveHike()">Give Hike</button>
+<h5 style="color: rgb(40, 40, 137);">{{pGetFromChild}}</h5>
+
+<app-child-two [pGetFromParent]="pSendToChild"  (pSendToParent)="pGetFromChild=$event" [buttonMessage]="buttonMessage"></app-child-two> 

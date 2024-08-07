@@ -1,0 +1,14 @@
+<hr>
+<b style="background-color: blanchedalmond;padding: 2px 4px 2px 4px;"> Custom Directives </b> <br>
+
+
+<p appCustomAttributeDirective [colorWhenHover]="'red'" [colorWhenLeave]="'white'">Hover me to see change in background colour</p>
+
+<button [appCustomAttributeDirective]="'red'" [colorWhenHover]="'pink'">Click to change color to red</button><br>
+
+<!--in button element, we passed the directive directly as a property, 
+but for other property we must not use same diective name, max one -->
+
+<p *cloneIf="showOrHide" >Custom Structural Directive for Clone If</p>
+
+<button (click)="showOrHide = !showOrHide">Click to {{!showOrHide? 'Show':'Hide'}}</button>

@@ -1,0 +1,45 @@
+<hr>
+<b style="background-color: blanchedalmond;padding: 2px 4px 2px 4px;">Structural Directives</b> <br>
+
+<p style="color: rgb(119, 105, 88);">-----------ngIf-----------</p>
+
+<div class="Example1">
+    <p *ngIf="pShowIf"> Showing ngIf directive!! </p>
+    <button (click)="pShowIf=!pShowIf">{{pShowIf? 'Hide' : 'Show'}} ngIf</button>
+</div>
+
+<div class="Example2">
+    <p *ngIf="pShowIf; then thenBlock; else elseBlock"> Doesn't matter whatever is here </p>
+    <ng-template #thenBlock>
+        <p>ngIf is TRUE (displayed with ng-template)</p>
+    </ng-template>
+    <ng-template #elseBlock>
+        <p>ngIf is FALSE (displayed with ng-template)</p>
+    </ng-template>
+</div>
+
+
+<p style="margin-top: 26px; color: rgb(119, 105, 88);">--------ngSwitch---------</p>
+
+<div class="Example1">
+    <div [ngSwitch]="pColorSwitch">
+        <p *ngSwitchCase="'red'">Picked Red</p>
+        <p *ngSwitchCase="'blue'">Picked Blue</p>
+        <p *ngSwitchDefault>Picked Green as default</p>
+    </div>
+</div>
+  
+
+<p style="margin-top: 26px; color: rgb(119, 105, 88);">---------ngFor------------</p>
+
+<div class="Example1" *ngFor="let item of pItemsFor; let i = index; let even = even; let odd = even; let first = first; let last = last;">
+    <p style="margin: 0px;" [style.color]=" even? (first?'blue':'green') : (last?'red':'orange') ">{{i}} is {{item}}</p>
+</div>
+
+<br>
+<p style="margin: 0px;">Trackby example:-   check in elements section, it highlights only updated elements.</p> 
+<button (click)="changeList()">Refresh list</button>
+<div class="Example-2" *ngFor="let x of pItemsTrackBy; let i = index; trackBy : refresh">
+    <p style="margin: 0px;">{{x}}</p>
+</div>
+

@@ -1,0 +1,47 @@
+<hr>
+<b style="background-color: blanchedalmond;padding: 2px 4px 2px 4px;">Class & Style Binding</b> 
+
+<p class="correct" style="font-family: Impact">Normal Class</p>
+
+<p [class]="status" [style.margin]="'5px'">Single Class Binding 1</p>
+
+<p [class.danger]="isCorrect" [style.margin]="pMargin">Single Class Binding 2</p>
+
+<p [class]="dangerClasses" [style]="pStyles">Multi Class Binding 1</p>
+
+<p [class]="correctObject" [style]="pStylesObject">Multi Class Binding 2</p>
+
+<p [ngClass]="correctArray">Multi Class Binding 3</p>
+
+
+
+
+<hr>
+<b style="background-color: blanchedalmond;padding: 2px 4px 2px 4px;"> Event Binding</b>
+
+<p> {{pCount}} </p>
+
+<button (click)="pCount=pCount+1">Increment without method</button><br><br>
+
+<button (click)="counter()">Increment with method</button><br><br>
+
+<button (click)="getEvent($event)">Pass $event as param</button>
+
+
+
+
+<hr>
+<b style="background-color: blanchedalmond;padding: 2px 4px 2px 4px;"> Template Reference variables</b> <br><br>
+
+<input type="text" #inpVariable value="Namaste" /> <br><br>
+
+<button (click)="showVariable(inpVariable.value)">Show Input Value in console</button>
+
+
+
+<hr>
+<b style="background-color: blanchedalmond;padding: 2px 4px 2px 4px;">Two way Binding</b> <br><br>
+
+<p>Entered Value is: {{pTwoWayValue}}</p>
+
+<input type="text" placeholder="Enter value here" [(ngModel)]="pTwoWayValue" />
