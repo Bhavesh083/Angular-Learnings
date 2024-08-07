@@ -14,6 +14,7 @@ import { CustomAttributeDirectiveDirective } from './customDirectives/custom-att
 import { ComponentCustomDirectiveComponent } from './customDirectives/component-custom-directive/component-custom-directive.component';
 import { CustomStructuralDirective } from './customDirectives/custom-structural.directive';
 import { EmployeeComponent } from './servicesComponents/employee/employee.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,10 @@ import { EmployeeComponent } from './servicesComponents/employee/employee.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

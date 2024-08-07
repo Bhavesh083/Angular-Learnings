@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { employee } from '../models/Employee';
+import { employee } from '../models/employee';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +16,13 @@ export class EmployeeService {
                          { id : 7, name : 'gambhir' }
                         ];
 
-  constructor() { }
+  url : string = "/assets/data/employeeData.json";
+
+  fetchData() : Observable<employee[]>{
+    return this.http.get<employee[]>(this.url);
+  }
+
+  constructor(private http: HttpClient) {
+    this.fetchData();
+  }
 }
