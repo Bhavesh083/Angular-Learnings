@@ -32,6 +32,19 @@ export class EmployeeComponent implements OnInit {
     this.employees.fetchData().subscribe(data => this.employeeList = data);
   }
 
-  
+  getSampleError(){
+    this.employees.fetchData2().subscribe({
+      next: data => {
+        console.log("Data is good")
+      },
+      error: err => {
+        console.log(err.message);
+      },
+      complete: () => {
+        console.log("completed");
+      }
+    }
+    );
+  }
 
 }

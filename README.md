@@ -13,7 +13,7 @@ Commands:-
  
 Pending Angular Topics:-
 Forms, Modules, Lifecyclehooks, guards, DI, local storage
-ngRx (state management), unit test (karma/jasmine), httpClient, lazy loading of components, rxJS, Toasters
+ngRx (state management), unit test (karma/jasmine), httpClient, lazy loading of components, rxJS, Toasters, Interceptors
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 :::::::::::::::::::::::::::::::Notes::::::::::::::::::::::::::::::
@@ -229,7 +229,6 @@ Services:
 - It is a singleton object or typically a class that contains functions and variables that can be used by components throughout application using dependency injection.
 - It's purpose is to maintain modularity, re-usability, application logic.
 - singleton object is a design pattern where it ensures that only one instance of the service is created and used throughout the application.
-- 
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -239,21 +238,54 @@ Dependency Injection:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+HTTP:   service ---> GET call ---> Request  ---> DB
+      service <-- Observables <-- Response <-- DB
+
+
+
 -----------> Observer subcribes the observables to listen for new data <------------
 
 Observables:
+              It is a function that converts ordinary stream of data into observable stream of data. you can think as a wrapper around the ordinary stream of data.
+              It is a mechanism to handle asynchronous operations and data streams. It is lazy as it emits values when time progresses.
+              It doesn't wait for complete data to be available, when data is partially available it will send to observer.
 
-Observer:
+Observer: It is consumer of values delivered by an observable using subscribe.
 
-Subscribe:
+Subscribe: It is a method which listens to observables and fetches data. The subscribe() method calls the observables function that emits the data.
+                   -the subscribe call takes three optional arguments. next, error & complete.
 
+- all these belongs to rxjs library 
 
+ex: in service, 
+     getData() : Observable<employee[]>{
+              return this.http.get<employee[]>("URL");
+     }
+      in component.ts,
+     serviceObject.getData().subscribe( data => x = data );
 
+------------------------------
+Error Handling:-
 
+We can catch the HTTP Errors at three different places :-  Component, Service, Globally
+
+In JavaScript, we use a try-catch to validate a piece of code, and if something comes with an error, it catches.
+But the try-catch is useless with our rxjs code because the errors happen in the subscribe scope, so try-catch doesn't solve anything, so we need to use Rxjs operators.
+
+In Components, you can handle like:
+.subsribe({
+ next: (x) => {}, 
+ error: (e) => {},
+ complete: () => console.log("done");
+})
+
+In Service, we can catch and pass it to subsribed method.
+.pipe( catchError( err => { 
+           return throwError(err);
+ } ))
+
+we can also use retry, timeout methods to call the get request again.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
 
 
 

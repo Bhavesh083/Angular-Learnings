@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { employee } from '../models/employee';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, observable, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+
+  constructor(private http: HttpClient) {
+    this.fetchData();
+  }
 
   employee : employee[] = [
                          { id : 3, name : 'yuvraj'},
@@ -22,7 +26,12 @@ export class EmployeeService {
     return this.http.get<employee[]>(this.url);
   }
 
-  constructor(private http: HttpClient) {
-    this.fetchData();
-  }
+  /* Error Handling */
+  fetchData2() : Observable<employee[]>{
+    return this.http.get<employee[]>(this.url+'q')
+                    .pipe( catchError( x => {
+                      return throwError(x); 
+                    }
+          ))
+  }  
 }
