@@ -15,6 +15,7 @@ import { ComponentCustomDirectiveComponent } from './customDirectives/component-
 import { CustomStructuralDirective } from './customDirectives/custom-structural.directive';
 import { EmployeeComponent } from './servicesComponents/employee/employee.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavsforRoutingComponent } from './navsfor-routing/navsfor-routing.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     CustomAttributeDirectiveDirective,
     ComponentCustomDirectiveComponent,
     CustomStructuralDirective,
-    EmployeeComponent
+    EmployeeComponent,
+    NavsforRoutingComponent
   ],
   imports: [
     BrowserModule,

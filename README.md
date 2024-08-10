@@ -285,7 +285,78 @@ In Service, we can catch and pass it to subsribed method.
  } ))
 
 we can also use retry, timeout methods to call the get request again.
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Routing:-
+
+- It requires, app.routing.module file & index.html should have <base href="/"> &  AppRouting Module in Imports array of app.module file.
+- we define routes in Routes array of routing.module file.
+  ex: = [ { path : xxx , component : xxx}, {}, {} ]
+- it is rendered wherever the <router-oulet> tag is available.
+- routerLink property is used to redirect.
+
+- as we import components both in routing file & module file,
+  create an array containing all components in routing file & import it in module file, so we can prevent importing two times.
+
+- WildCards:-  { path : ** , component : pagenotfound }
+  - always should be last route in array.
+  - can be used in case of page not found/
+
+- Navigation:- { path : '', redirectTo : '/services', pathMatch: 'full'},
+   - used to redirect if string matches as per pathMatch: full or prefix.
+
+- Route Parameters:-
+  - pass parameters to URL using Router module,
+     a. inject it in constructor & use navigate method to pass.
+           ex: router.navigate( [ '/employees', employee.id , x, y etc..] );
+     b. set path in Routes to take parameter.
+           ex: path : 'services/:id' 
+  - read parameters of URL using ActivatedRoute module,
+     a. inject it in constructor & use snapshot.paramMap.get('paramname') to fetch.
+           ex: actroute.snapshot.paramMap.get('paramname');
+         but if we use snapshot approach, latest changes will not be retrieved because of OnInt as only when component is initialized it rerieves the param.
+                           (OR)
+     b. to overcome above issue, we use paramMap observable of activated route.
+            ex: actroute.paramMap.subscribe( (params: ParamMap) =>{
+                               let id = params.get('id');
+                   } );
+          - here, paramMap is Observable, so we used subcribe.
+
+ - Optional Route Parameters:-
+       pass value as key value to naviagate method & no need to define path in Routes as its optional.
+         ex:  router.navigate(['/employees', {id: employee.id} ]);
+
+ - Relative Navigation:-
+       before we used to pass both path & params in navigate method,
+       now we just pass params to navigate method & also use relativeTo
+             ex: router.navigate( [params] , {relativeTo: this.route} );
+
+       also, we can go back one route using '../'
+             ex: router.navigate( ['../', params ], {relativeTo: this.route} );
+
+ - Child Routes:-
+       use the children property as an array  having childs as a path & component again.
+           ex: { path , component, children : [ { path, component}, {..}, {..}] }
+        use the <router-outlet> in parent component to display child comps in it.
+        the URL should be like /main/child
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
