@@ -18,16 +18,6 @@ ngRx (state management), unit test (karma/jasmine), httpClient, lazy loading of 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 :::::::::::::::::::::::::::::::Notes::::::::::::::::::::::::::::::
 
-
-Module:
-- It is a mechanism to group all related components, directives, pipes and services, in such a way that can be combined with other modules to create an application.
-- A module.ts file contains a decorator called as @ngModule, it contains
-- The declarations describes which declarables likes components, services, pipes belong to that module.
-- The Import tells Angular about other NgModules that is used in this particular module.
-- The providers array is where you list the services the application needs. 
-- The bootstrapping process creates the component(s) listed in the bootstrap array and inserts each one into the browser DOM, if it finds an element matching the component's selector.
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Components:
 - It is a basic building block of an angular application, where it contains the set of related features.
 - It is made up of a type script class, html template, CSS styles.
@@ -343,6 +333,31 @@ Routing:-
         the URL should be like /main/child
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LifeCycle Hooks:-
+- These are simply the methods that are executed at a certainlifecycle of a component.
+- Order: Constructor -> onChange -> onInit -> doCheck -> ngAfterContentInit -> ngAfterContentChecked -> ngAfterViewInit -> ngAfterViewChecked -> onDestroy.
+
+- onChange is executed when any data-bound input property changes. It then notifies you when an input property changes and provides the current and previous values
+- onChange uses Simplechanges object to track.
+  eg: onChange(changes: SimpleChange){
+             let x = changes['property_name'];
+             clg(x.previousChange() or x.firstChange() or x.currentChange());
+         }
+  
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Module:
+- It is a mechanism to group all related components, directives, pipes and services, in such a way that can be combined with other modules to create an application.
+- A module.ts file contains a decorator called as @ngModule, it contains
+- The declarations describes which declarables likes components, services, pipes belong to that module.
+- The Import tells Angular about other NgModules that is used in this particular module.
+- The providers array is where you list the services the application needs. 
+- The bootstrapping process creates the component(s) listed in the bootstrap array and inserts each one into the browser DOM, if it finds an element matching the component's selector.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

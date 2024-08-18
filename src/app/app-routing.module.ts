@@ -9,6 +9,7 @@ import { CustomStructuralDirective } from './customDirectives/custom-structural.
 import { ComponentCustomDirectiveComponent } from './customDirectives/component-custom-directive/component-custom-directive.component';
 import { NavsforRoutingComponent } from './navsfor-routing/navsfor-routing.component';
 import { AppComponent } from './app.component';
+import { LifecycleTestComponent } from './lifecycle-test/lifecycle-test.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/services', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path : 'pipes', component : PipesComponentComponent},
   { path : 'structuralDirectives', component: StructuralDirectivesComponent},
   { path : 'bindings', component : BindingsComponent},
+  { path : 'lifeCycle', component : LifecycleTestComponent},
   { path : '**', component : BindingsComponent}
 ];
 

@@ -16,6 +16,7 @@ import { CustomStructuralDirective } from './customDirectives/custom-structural.
 import { EmployeeComponent } from './servicesComponents/employee/employee.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavsforRoutingComponent } from './navsfor-routing/navsfor-routing.component';
+import { LifecycleTestComponent } from './lifecycle-test/lifecycle-test.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NavsforRoutingComponent } from './navsfor-routing/navsfor-routing.compo
     ComponentCustomDirectiveComponent,
     CustomStructuralDirective,
     EmployeeComponent,
-    NavsforRoutingComponent
+    NavsforRoutingComponent,
+    LifecycleTestComponent
   ],
   imports: [
     BrowserModule,
