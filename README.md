@@ -12,8 +12,8 @@ Commands:-
 - Latest version of angular is v18 (2024 release)    
  
 Pending Angular Topics:-
-Forms, Modules, Lifecyclehooks, guards, DI, local storage
-ngRx (state management), unit test (karma/jasmine), httpClient, lazy loading of components, rxJS, Toasters, Interceptors
+Forms, guards, local storage, httpClient
+ngRx (state management), unit test (karma/jasmine), lazy loading of components, rxJS, Toasters, Interceptors
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 :::::::::::::::::::::::::::::::Notes::::::::::::::::::::::::::::::
@@ -332,6 +332,7 @@ Routing:-
         use the <router-outlet> in parent component to display child comps in it.
         the URL should be like /main/child
 
+- Refer modules section for ""routing in modules"".
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -346,24 +347,53 @@ LifeCycle Hooks:-
              clg(x.previousChange() or x.firstChange() or x.currentChange());
          }
   
+- doCheck is executed after every change detection cycle no matter where the change has occured.
+  it checks any data of component.
+  also used when change detection is needed when an array or object is modified because onChange can't detect changes of array or objects.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Module:
-- It is a mechanism to group all related components, directives, pipes and services, in such a way that can be combined with other modules to create an application.
+Modules:
+- It is a mechanism to organize an application & maintain modularity by grouping all related components, directives, pipes and services as an unit.
+
 - A module.ts file contains a decorator called as @ngModule, it contains
 - The declarations describes which declarables likes components, services, pipes belong to that module.
 - The Import tells Angular about other NgModules that is used in this particular module.
 - The providers array is where you list the services the application needs. 
 - The bootstrapping process creates the component(s) listed in the bootstrap array and inserts each one into the browser DOM, if it finds an element matching the component's selector.
 
+Common Types of Modules:
+ - App Module : Referred as root module & is the entry point module.
+ - Core Module : Provides singleton services. Any components, pipesm directives that is used only once in app. Ex:- Navbar or footer that is called once in our app component.
+ - Shared Module : Common Ui components, pipes or directives that are going to be used in many modules.
+ - Feature Module : Allows you to break the app into individual units by feature.
+ - Routing Module : Used when your app needs to have multiple pages.
+
+Routing in Modules:- 
+- 1st way: 
+      simply you can add all paths in root routing file i.e app.routing file.
+- 2nd way: 
+      you can create a routing file in each module and add routes there & import this routing file in its module.ts file & import this module in main app module.
+      also change RouterModule.forRoot() to .forChild()
+- 3rd way:
+      - Lazy loading
+      -  Modules that are lazy loaded will be loaded only when the user navigates to their routes.
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+Lazy loading:
+- Process of  loading components or modules or other assets of a website as they are required. 
+- It helps in decreasing start up time.
+- Since Angular is SPA, all of its components are loaded at once. This means that a lot of unneccessary libraries or modules might be loaded as well.
+- With lazy loading, our app does not need to load everything at once, only needs to load what the user expects to see when the app first loads.
+- Modules that are lazy loaded will be loaded only when the user navigates to their routes.
 
 
 
+---------------------------------------------
 
+Guards:
 
 
 

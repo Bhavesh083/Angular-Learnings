@@ -10,6 +10,11 @@ import { ComponentCustomDirectiveComponent } from './customDirectives/component-
 import { NavsforRoutingComponent } from './navsfor-routing/navsfor-routing.component';
 import { AppComponent } from './app.component';
 import { LifecycleTestComponent } from './lifecycle-test/lifecycle-test.component';
+import { LoginEmployeeComponent } from './modules/login/components/login-employee/login-employee.component';
+import { AddEmployeeComponent } from './modules/crud/components/add-employee/add-employee.component';
+import { DeleteEmployeeComponent } from './modules/crud/components/delete-employee/delete-employee.component';
+import { AllCRUDComponent } from './modules/crud/components/all-crud/all-crud.component';
+import { CrudRoutingModule } from './modules/crud/crud-routing.module';
 
 const routes: Routes = [
   { path : '', redirectTo : '/services', pathMatch: 'full'},
@@ -21,7 +26,9 @@ const routes: Routes = [
   { path : 'structuralDirectives', component: StructuralDirectivesComponent},
   { path : 'bindings', component : BindingsComponent},
   { path : 'lifeCycle', component : LifecycleTestComponent},
+  { path : 'login', component : LoginEmployeeComponent},
   { path : '**', component : BindingsComponent}
+  //check crud module for few more routes
 ];
 
 @NgModule({

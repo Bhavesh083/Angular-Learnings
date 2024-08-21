@@ -1,11 +1,11 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-lifecycle-test',
   templateUrl: './lifecycle-test.component.html',
   styleUrls: ['./lifecycle-test.component.css']
 })
-export class LifecycleTestComponent implements OnInit, OnChanges {
+export class LifecycleTestComponent implements OnInit, OnChanges, DoCheck {
 
   track : number = 0;
 
@@ -32,6 +32,12 @@ export class LifecycleTestComponent implements OnInit, OnChanges {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     console.log(++this.track + ". OnDestroy");
+  }
+
+  ngDoCheck(): void {
+    //Called every time when any data changes.
+    //Add 'implements DoCheck' to the class.
+    console.log(this.track + ". checked");
   }
 
 }
