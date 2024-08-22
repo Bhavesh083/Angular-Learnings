@@ -5,16 +5,8 @@ import { ChildOneComponent } from './child-one/child-one.component';
 import { BindingsComponent } from './bindings/bindings.component';
 import { StructuralDirectivesComponent } from './structural-directives/structural-directives.component';
 import { PipesComponentComponent } from './pipes/pipes-component/pipes-component.component';
-import { CustomStructuralDirective } from './customDirectives/custom-structural.directive';
 import { ComponentCustomDirectiveComponent } from './customDirectives/component-custom-directive/component-custom-directive.component';
-import { NavsforRoutingComponent } from './navsfor-routing/navsfor-routing.component';
-import { AppComponent } from './app.component';
 import { LifecycleTestComponent } from './lifecycle-test/lifecycle-test.component';
-import { LoginEmployeeComponent } from './modules/login/components/login-employee/login-employee.component';
-import { AddEmployeeComponent } from './modules/crud/components/add-employee/add-employee.component';
-import { DeleteEmployeeComponent } from './modules/crud/components/delete-employee/delete-employee.component';
-import { AllCRUDComponent } from './modules/crud/components/all-crud/all-crud.component';
-import { CrudRoutingModule } from './modules/crud/crud-routing.module';
 
 const routes: Routes = [
   { path : '', redirectTo : '/services', pathMatch: 'full'},
@@ -26,9 +18,10 @@ const routes: Routes = [
   { path : 'structuralDirectives', component: StructuralDirectivesComponent},
   { path : 'bindings', component : BindingsComponent},
   { path : 'lifeCycle', component : LifecycleTestComponent},
-  { path : 'login', component : LoginEmployeeComponent},
+  { path : 'login', loadChildren : () => import('./modules/login/login.module').then(m => m.LoginModule) },
+  { path : 'crud', loadChildren : () => import('./modules/crud/crud.module').then(m => m.CrudModule) },
   { path : '**', component : BindingsComponent}
-  //check crud module for few more routes
+  //check crud & login modules for more routes
 ];
 
 @NgModule({

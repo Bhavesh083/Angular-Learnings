@@ -4,8 +4,9 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { DeleteEmployeeComponent } from './components/delete-employee/delete-employee.component';
 import { AllCRUDComponent } from './components/all-crud/all-crud.component';
 
+// changed path to empty '' because we already defined 'crud' path in app-routing file.
 const routes: Routes = [
-    { path : 'crud', component : AllCRUDComponent, children : [
+    { path : '', component : AllCRUDComponent, children : [
         { path : 'addEmployeee', component : AddEmployeeComponent},
         { path : 'deleteEmployeee', component : DeleteEmployeeComponent}
     ]}

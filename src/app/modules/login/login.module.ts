@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginEmployeeComponent } from './components/login-employee/login-employee.component';
-
+import { LoginRoutingModule } from './login-routing.module';
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { LoginEmployeeComponent } from './components/login-employee/login-employ
     LoginEmployeeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LoginRoutingModule
   ]
 })
 export class LoginModule { }

@@ -17,9 +17,7 @@ import { EmployeeComponent } from './servicesComponents/employee/employee.compon
 import { HttpClientModule } from '@angular/common/http';
 import { NavsforRoutingComponent } from './navsfor-routing/navsfor-routing.component';
 import { LifecycleTestComponent } from './lifecycle-test/lifecycle-test.component';
-import { CrudModule } from './modules/crud/crud.module';
 import { LoginModule } from './modules/login/login.module';
-import { CrudRoutingModule } from './modules/crud/crud-routing.module';
 
 @NgModule({
   declarations: [
@@ -41,8 +39,6 @@ import { CrudRoutingModule } from './modules/crud/crud-routing.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    CrudModule,
-    LoginModule,
     AppRoutingModule
   ],
   providers: [HttpClientModule],
