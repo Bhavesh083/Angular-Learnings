@@ -1,5 +1,15 @@
 <hr>
 <br>
-<p style="color: rgb(216, 216, 216); background-color: rgb(79, 60, 38); width: fit-content; padding: 5px;">This page is lazy loaded!!</p>
+<p style="color: rgb(216, 216, 216); background-color: rgb(79, 60, 38); width: fit-content; padding: 5px;"> &#9432; This page is lazy loaded!!</p>
 
-<p>login-employee works!</p>
+<p>Please login to Perform EDIT operations in CRUD Page</p>
+
+<div *ngIf="isLoggedIn(); else logOut">
+    <button style="color: red;" (click)="logout()">Logout</button>
+</div>
+
+<ng-template #logOut>
+    <button style="color: rgb(114, 191, 0);" (click)="login()">Login</button>
+</ng-template>
+
+

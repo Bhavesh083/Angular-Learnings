@@ -1,14 +1,27 @@
 <hr>
 <br>
-<p style="color: rgb(216, 216, 216); background-color: rgb(79, 60, 38); width: fit-content; padding: 5px;">This page is lazy loaded!!</p>
+<p style="color: rgb(216, 216, 216); background-color: rgb(79, 60, 38); width: fit-content; padding: 5px;"> &#9432; This page is lazy loaded!!</p>
+<p style="color: rgb(216, 216, 216); background-color: rgb(79, 60, 38); width: fit-content; padding: 5px;"> &#9432; This page uses Guards!!</p>
+
+<span style="color: red;"> &#9432; Login to perform Write Operations!!</span>
 
 <p>Welcome to CRUD page! check the various operations available</p>
 
 
 <nav>
-    <a routerLink="addEmployeee">1. Add Employee</a>   
+    <a routerLink="addEmployee">1. Add Employee</a>   
     <br><br>
-    <a routerLink="deleteEmployeee">2. Delete Employee</a>
+    <a routerLink="deleteEmployee">2. Delete Employee</a>
+    <br><br>
+    <a routerLink="getEmployees">3. Get All Employees</a>
+    <br><br>
+    <a routerLink="editEmployee">4. Edit Employee</a>
 </nav>
+
+<br>
+
+<button (click)="canNavigate=!canNavigate" style="padding: 4px;"> {{canNavigate? 'Block' : 'Unblock'}} Navigation</button>
+
+<hr>
 
 <router-outlet></router-outlet>

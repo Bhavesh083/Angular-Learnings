@@ -12,4 +12,6 @@ export class AllCRUDComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  canNavigate : boolean = true;
+
 }

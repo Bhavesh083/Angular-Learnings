@@ -4,6 +4,8 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { DeleteEmployeeComponent } from './components/delete-employee/delete-employee.component';
 import { AllCRUDComponent } from './components/all-crud/all-crud.component';
 import { CrudRoutingModule } from './crud-routing.module';
+import { GetEmployeesComponent } from './components/get-employees/get-employees.component';
+import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
 
 
 
@@ -11,7 +13,9 @@ import { CrudRoutingModule } from './crud-routing.module';
   declarations: [
     AddEmployeeComponent,
     DeleteEmployeeComponent,
-    AllCRUDComponent
+    AllCRUDComponent,
+    GetEmployeesComponent,
+    EditEmployeeComponent
   ],
   imports: [
     CommonModule,

@@ -13,7 +13,7 @@ import { PipesComponentComponent } from './pipes/pipes-component/pipes-component
 import { CustomAttributeDirectiveDirective } from './customDirectives/custom-attribute-directive.directive';
 import { ComponentCustomDirectiveComponent } from './customDirectives/component-custom-directive/component-custom-directive.component';
 import { CustomStructuralDirective } from './customDirectives/custom-structural.directive';
-import { EmployeeComponent } from './servicesComponents/employee/employee.component';
+import { EmployeeComponent } from './services/employee/employee.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavsforRoutingComponent } from './navsfor-routing/navsfor-routing.component';
 import { LifecycleTestComponent } from './lifecycle-test/lifecycle-test.component';

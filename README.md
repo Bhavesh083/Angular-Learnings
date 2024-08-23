@@ -375,32 +375,65 @@ Routing in Modules:-
 - 2nd way: 
       you can create a routing file in each module and add routes there & import this routing file in its module.ts file & import this module in main app module.
       also change RouterModule.forRoot() to .forChild()
+      import AppRouting module at last in main module.ts file, else module routes don't work.
 - 3rd way:
       - Lazy loading
       -  Modules that are lazy loaded will be loaded only when the user navigates to their routes.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  ------------------* IMPORTANT *-----------------
 
+Lazy loading of Modules through routing:
 
-Lazy loading:
-- Process of  loading components or modules or other assets of a website as they are required. 
+- Process of loading components or modules or other assets of a website as they are required. 
 - It helps in decreasing start up time.
-- Since Angular is SPA, all of its components are loaded at once. This means that a lot of unneccessary libraries or modules might be loaded as well.
+- Since Angular is SPA, by default angular eagarly loads all modules when starting the application. This means that a lot of unneccessary libraries or modules might be loaded as well.
 - With lazy loading, our app does not need to load everything at once, only needs to load what the user expects to see when the app first loads.
 - Modules that are lazy loaded will be loaded only when the user navigates to their routes.
 
+- To lazy load modules, use "loadChildren" instead of components in routes of your app.routing file.
+  loadChildren expects a function that uses dynamic import syntax to import your lazy loaded module only when its needed.
+  "remove imported module from app.module.ts file. (as we are importing only when needed, else it will load at startup)"
+
+  ex: { path : 'crud' , loadChildren : () => import('./modules/crud/crud.module').then(m => m.CrudModule) },
+
+  open console and network, notice only when you routed to crud, crud chunk is loaded.
 
 
----------------------------------------------
-
-Guards:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+GUARDS: 
 
+  It is a mechanism to control access to certain parts of application to specific users.
+- Used to control whether users can navigate to or away from the current route.
+- Allow access to certain parts of the application to specific users.
 
+CanActivate:
+- this guard decides if a route can be activated or not, it allows us to cancel the navigation.
+- One of the use cases of this guard is to check if the user has logged in to the system. If the user has not logged in, then the guard can redirect him to the login page.
 
+CanActiveChild:
+- used to guard the child routes.
+- instead of attaching CanActivate guard to all child routes, simply attach canactivatechild parent route only.
 
+CanDeactivate:
+- This Angular Guard decides if the user can leave the component (navigate away from the current route). 
+- This route is useful when the user might have some pending changes, which is not yet saved. 
+- allows us to ask for user confirmation before leaving the component.  
 
+Resolve:
+- This guard delays the activation of the route until some tasks are complete. 
+- You can use the guard to pre-fetch the data from the backend API before activating the route.
+
+CanLoad:
+- The CanLoad Guard prevents the loading of the Lazy Loaded Module.
+- We generally use this guard when we do not want to unauthorized users to be able even to see the source code of the module.
+
+CanMatch:
+- Used when we want to have the same route go to different places. i.e same path but different components.
+- ex: { path : 'login', component : x, canMatch : [condition] }, { path : 'login', component : y, canMatch : [condition] }
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
