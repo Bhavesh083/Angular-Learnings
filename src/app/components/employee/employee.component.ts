@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../employee.service';
 import { employee } from 'src/app/models/employee';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -10,22 +10,28 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 })
 export class EmployeeComponent implements OnInit {
 
+  constructor(private employees: EmployeeService, private router : Router, private actRoute : ActivatedRoute) {
+  }
 
   employeeList : employee[] = [{ id : 1, name : 'dhoni' },{id : 2, name : 'raina' }];
 
   // can push elements using concat or spread operator or foreach
   getFromService(){
-    this.employees.employee.forEach( x => {
+    this.employees.employee.forEach( x => { 
       if(!this.employeeList.includes(x,0)){
         this.employeeList.push(x);
-      }
-    })
-  } 
+  }})} 
 
-  // GET FROM HTTP CALL 
+  // ---------------  HTTP CALLS  -----------
+
+  // GET 
   getFromHttpCall(){
     this.employees.fetchData().subscribe(data => this.employeeList = data);
   }
+
+  // POST
+  // PUT
+  // Delete
 
   // Testing Error Handling
   getSampleError(){
@@ -42,6 +48,8 @@ export class EmployeeComponent implements OnInit {
     }
     );
   }
+
+
 
   // ------------------  ROUTING -----------------------
   
@@ -71,9 +79,6 @@ export class EmployeeComponent implements OnInit {
   selectedID : any;
   employeeFromURL : employee = { id : 0, name : 'bhavesh' };
 
-  constructor(private employees: EmployeeService, private router : Router, private actRoute : ActivatedRoute) {
-  } 
-
   ngOnInit(): void { 
     // using snapshot, but not dynamic updated
     this.selectedID = this.actRoute.snapshot.paramMap.get('id');
@@ -82,9 +87,6 @@ export class EmployeeComponent implements OnInit {
     this.actRoute.paramMap.subscribe( (params : ParamMap) => {
       this.selectedID = params.get('id');
     })
-
-
-
 
     /*
     var getID = this.actRoute.snapshot.paramMap.get('id');

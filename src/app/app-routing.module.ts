@@ -1,27 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeComponent } from './services/employee/employee.component';
-import { ChildOneComponent } from './child-one/child-one.component';
-import { BindingsComponent } from './bindings/bindings.component';
-import { StructuralDirectivesComponent } from './structural-directives/structural-directives.component';
-import { PipesComponentComponent } from './pipes/pipes-component/pipes-component.component';
-import { ComponentCustomDirectiveComponent } from './customDirectives/component-custom-directive/component-custom-directive.component';
-import { LifecycleTestComponent } from './lifecycle-test/lifecycle-test.component';
-import { AuthServiceGuard } from './auth-service.guard';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { PipesComponentComponent } from './components/pipes-component/pipes-component.component';
+import { ChildOneComponent } from './components/child-one/child-one.component';
+import { BindingsComponent } from './components/bindings/bindings.component';
+import { StructuralDirectivesComponent } from './components/structural-directives/structural-directives.component';
+import { ComponentCustomDirectiveComponent } from './components/component-for-custom-directives/component-custom-directive.component';
+import { LifecycleTestComponent } from './components/lifecycle-test/lifecycle-test.component';
+import { LocalstorageTestComponent } from './components/localstorage-test/localstorage-test.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/services', pathMatch: 'full'},
   { path : 'services', component: EmployeeComponent, children : [{path: 'child1', component: PipesComponentComponent}]},
-  { path : 'services/:id', component: EmployeeComponent},
+  { path : 'services/:id', component: EmployeeComponent, children : [{path: 'child1', component: PipesComponentComponent}]},
   { path : 'componentsInteraction', component : ChildOneComponent},
   { path : 'customDirectives', component: ComponentCustomDirectiveComponent},
   { path : 'pipes', component : PipesComponentComponent},
   { path : 'structuralDirectives', component: StructuralDirectivesComponent},
   { path : 'bindings', component : BindingsComponent},
   { path : 'lifeCycle', component : LifecycleTestComponent},
-  { path : 'login', loadChildren : () => import('./modules/login/login.module').then(m => m.LoginModule) },
+  { path : 'localStorage', component : LocalstorageTestComponent},
+  
+  // lazy loading modules
+  { path : 'login', loadChildren : () => import('./modules/login/login.module').then(m => m.LoginModule)},
   { path : 'crud', loadChildren : () => import('./modules/crud/crud.module').then(m => m.CrudModule)},
   { path : '**', component : BindingsComponent}
+  
   //check crud & login modules for more routes
 ];
 

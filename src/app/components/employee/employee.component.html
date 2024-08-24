@@ -1,0 +1,34 @@
+<hr>
+<h3 style="color: rgb(0, 86, 57); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> Services </h3>
+
+<p style="margin-top: 25px;">Employee details:-              <b> you can click on employee to see selected Employee's ID</b> </p>
+
+<p *ngIf="selectedID!" style="color: green;">selected ID is :- {{selectedID}}</p>
+
+<ul *ngFor="let emp of employeeList" style="background-color: beige;">
+    <li (click)="passToURL(emp.id)">{{emp.name}}</li>
+</ul>
+
+<br>
+
+<button (click)="getFromService()" style="color: rgb(144, 0, 0);">Get data from hard-coded array in Service</button>
+<br><br>
+<button (click)="getFromHttpCall()" style="color: rgb(46, 146, 0);">Get data from Http Call via service</button>
+<br><br>
+<button (click)="getSampleError()" style="color: rgb(255, 0, 0);">Test error handling in console</button>
+
+<br>
+<br>
+
+
+<div *ngIf="employeeFromURL.id!=0" style="background-color: rgb(221, 221, 221); padding: 5px;">
+    <p>More Details of Employee:- got from URL </p>
+    <p> 
+        Employee ID :- {{employeeFromURL.id}}  <br>
+        Employee Name :- {{employeeFromURL.name}}
+    </p>
+</div>
+
+<p> <button (click)="openChild()">Click here</button> to open Pipes using child routes</p>
+
+<router-outlet></router-outlet>

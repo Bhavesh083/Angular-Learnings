@@ -1,0 +1,13 @@
+<h3 style="color: rgb(0, 86, 57); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Local Storage Testing</h3>
+<p style="color: rgb(91, 151, 0);"> &#9432; Used to store data on the browser</p>
+<p style="color: red;"> &#9432; Open Application console to monitor local storage data</p>
+
+<br>
+
+<label for="key"> Key : </label><input #key type="text" placeholder="enter key" /> <br>
+<label for="value"> Value : </label><input #value type="text" placeholder="enter value" /> <br> <br>
+
+<button (click)="addItem(key.value, value.value)">Add Item</button> <br>
+<button (click)="getItem(key.value)">Get entered Key's Value in console</button> <br>
+<button (click)="removeItem(key.value)">Remove enetered Key</button> <br>
+<button (click)="clearAll()">Clear local storage</button>
