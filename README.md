@@ -12,8 +12,8 @@ Commands:-
 - Latest version of angular is v18 (2024 release)    
  
 Pending Angular Topics:-
-Forms, guards, local storage, httpClient
-ngRx (state management), unit test (karma/jasmine), lazy loading of components, rxJS, Toasters, Interceptors
+Forms, Interceptors
+ngRx (state management), unit test (karma/jasmine), rxJS, Toasters, 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 :::::::::::::::::::::::::::::::Notes::::::::::::::::::::::::::::::
@@ -227,56 +227,6 @@ Dependency Injection:
 - when angular creates a new instance of a component or pipe or directive class, it determines which services or other depencies that class needs by looking at constructor parameter types.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-HTTP:   service ---> GET call ---> Request  ---> DB
-      service <-- Observables <-- Response <-- DB
-
-
-
------------> Observer subcribes the observables to listen for new data <------------
-
-Observables:
-              It is a function that converts ordinary stream of data into observable stream of data. you can think as a wrapper around the ordinary stream of data.
-              It is a mechanism to handle asynchronous operations and data streams. It is lazy as it emits values when time progresses.
-              It doesn't wait for complete data to be available, when data is partially available it will send to observer.
-
-Observer: It is consumer of values delivered by an observable using subscribe.
-
-Subscribe: It is a method which listens to observables and fetches data. The subscribe() method calls the observables function that emits the data.
-                   -the subscribe call takes three optional arguments. next, error & complete.
-
-- all these belongs to rxjs library 
-
-ex: in service, 
-     getData() : Observable<employee[]>{
-              return this.http.get<employee[]>("URL");
-     }
-      in component.ts,
-     serviceObject.getData().subscribe( data => x = data );
-
-------------------------------
-Error Handling:-
-
-We can catch the HTTP Errors at three different places :-  Component, Service, Globally
-
-In JavaScript, we use a try-catch to validate a piece of code, and if something comes with an error, it catches.
-But the try-catch is useless with our rxjs code because the errors happen in the subscribe scope, so try-catch doesn't solve anything, so we need to use Rxjs operators.
-
-In Components, you can handle like:
-.subsribe({
- next: (x) => {}, 
- error: (e) => {},
- complete: () => console.log("done");
-})
-
-In Service, we can catch and pass it to subsribed method.
-.pipe( catchError( err => { 
-           return throwError(err);
- } ))
-
-we can also use retry, timeout methods to call the get request again.
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Routing:-
@@ -392,13 +342,13 @@ Lazy loading of Modules through routing:
 
 - To lazy load modules, use "loadChildren" instead of components in routes of your app.routing file.
   loadChildren expects a function that uses dynamic import syntax to import your lazy loaded module only when its needed.
-  "remove imported module from app.module.ts file. (as we are importing only when needed, else it will load at startup)"
+- "remove imported module from app.module.ts file. (as we are importing only when needed, else it will load at startup)"
 
   ex: { path : 'crud' , loadChildren : () => import('./modules/crud/crud.module').then(m => m.CrudModule) },
 
   open console and network, notice only when you routed to crud, crud chunk is loaded.
 
-
+- You can only lazy load standalone components & not normal components.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -435,7 +385,110 @@ CanMatch:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Local Storage:-
+- There are essentially three ways to store information for usage in your Angular app: as variable, as local storage, or on a database.
+- When you store as variable, it will disappear as the user refresh the page. 
+  When you store as local storage, it will remain as the user comes back. 
+  Finally, on a database, it will persist. Each option should be used accordingly.
 
+- Local storage is a way to store data on the client’s computer using key and value pairs in a web browser. 
+  The best thing about local storage is that there’s no expiration date for the data stored in local storage, but we can always delete it using its clear() function.
+
+- open console -> application, there you can find the data stored in local storage.
+
+- Create a Service (Optional but Recommended): It’s a good practice to encapsulate interactions with local storage in a service for better organization and reusability.
+
+methods:- setItem(key, value) , getItem(key) , removeItem(key) , clear() - it clears all local storage.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Http Client :- It is a module in angular to send requests & get responses from API's.
+
+HTTP:   service ---> GET call ---> Request  ---> DB
+      service <-- Observables <-- Response <-- DB
+
+-----------> Observer subcribes the observables to listen for new data <------------
+
+Observables:
+              It is a function that converts ordinary stream of data into observable stream of data. you can think as a wrapper around the ordinary stream of data.
+              It is a mechanism to handle asynchronous operations and data streams. It is lazy as it emits values when time progresses.
+              It doesn't wait for complete data to be available, when data is partially available it will send to observer.
+
+Observer: It is consumer of values delivered by an observable using subscribe.
+
+Subscribe: It is a method which listens to observables and fetches data. The subscribe() method calls the observables function that emits the data.
+                   -the subscribe call takes three optional arguments. next, error & complete.
+
+- all these belongs to rxjs library 
+
+ex: in service, 
+     getData() : Observable<employee[]>{
+              return this.http.get<employee[]>("URL");
+     }
+      in component.ts,
+     serviceObject.getData().subscribe( data => x = data );
+
+-------------------------------X-------------------------------------X--------------------------------------------
+
+Error Handling:-
+
+We can catch the HTTP Errors at three different places :-  Component, Service, Globally
+
+In JavaScript, we use a try-catch to validate a piece of code, and if something comes with an error, it catches.
+But the try-catch is useless with our rxjs code because the errors happen in the subscribe scope, so try-catch doesn't solve anything, so we need to use Rxjs operators.
+
+In Components, you can handle like:
+.subsribe({
+ next: (x) => {}, 
+ error: (e) => {},
+ complete: () => console.log("done");
+})
+
+In Service, we can catch and pass it to subsribed method.
+.pipe( catchError( err => { 
+           return throwError(err);
+ } ))
+
+we can also use retry, timeout methods to call the get request again.
+
+
+------------------------------------X-------------------------------------X--------------------------------------------
+
+HTTP Methods:-
+
+GET:- To fetch details
+
+POST:- To create
+Since we are sending data as JSON, we need to set the 'content-type': 'application/json' in the HTTP header. 
+The JSON.stringify(person) converts the person object into a JSON string.
+
+PUT:- To update
+PATCH:- To update partially
+DELETE:- To delete
+
+
+options to pass with URL:- 
+
+- headers contain metadata in key-value pairs that are sent along with HTTP requests and responses. They can be used to define caching behavior, facilitate authentication, and manage session state. You can make use of the Http Interceptor to set the common headers.
+   pass like: headers?: HttpHeaders | { [header: string]: string | string[]; };
+   ex:  create a new header object & set
+      const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+
+- params: set query strings / URL parameters     pass like:-  params?: HttpParams | { [param: string]: string | string[]; };
+   ex:   create new param object & set
+       const params = new HttpParams()
+      .set('sort', "description")
+      .set('page',"2");
+
+- observe: This option determines the return type.   EX:- observe?: "body|events|response|";
+- responseType: The value of responseType determines how the response is parsed.   EX:- responseType: "arraybuffer|json|blob|text";
+- reportProgress: Whether this request should be made in a way that exposes progress events.  EX:- reportProgress?: boolean; 
+- withCredentials: Whether this request should be sent with outgoing credentials (cookies).  EX:- withCredentials?: boolean; 
+   
+
+
+Forms, httpClient, Interceptors
 
 
 

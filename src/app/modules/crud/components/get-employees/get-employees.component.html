@@ -1,1 +1,23 @@
-<p>get-employees works!</p>
+<p style="color: rgb(187, 0, 0); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">{{errorMessage}}</p>
+
+<b style="color: green; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Enter Employee ID & click enter key to get data  </b>
+<input type="number" placeholder="enter ID" #enteredID (keyup.enter)="getEmployeeByID(enteredID.valueAsNumber)"/>
+
+<div *ngIf="singleEmployee?.id!=-1" style="background-color: bisque; padding: 4px; width: fit-content;">
+    <span> Name : {{singleEmployee.employee_name}} & </span>
+    <span> Salary : {{singleEmployee.employee_salary}} </span>
+</div>
+
+<h4>OR</h4>
+
+<b style="color: green; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Click fetch to get all the employees info </b>
+
+<button (click)="getAll()" style="padding: 3px 6px; color: #136db7;">Fetch</button>
+
+
+<ul *ngFor="let emp of employees">
+    <li>
+        <span> Name : {{emp.employee_name}} & </span>
+        <span> Salary : {{emp.employee_salary}} </span>
+    </li>
+</ul>

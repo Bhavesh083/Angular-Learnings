@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpCallsService } from 'src/app/services/http-calls.service';
 
 @Component({
   selector: 'app-delete-employee',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteEmployeeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http : HttpCallsService) { }
 
   ngOnInit(): void {
+  }
+
+  deleteEmp(id : number){
+    console.log(id);
+    this.http.delete(id).subscribe({
+      next: (d) => {
+        window.alert("Deleted "+ JSON.stringify(d));
+        console.log(d);
+      },
+      error: (err) => {
+      },
+      complete: () => {
+        console.log('Delete call over');
+      },
+    });
   }
 
 }

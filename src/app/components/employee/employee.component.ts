@@ -29,10 +29,6 @@ export class EmployeeComponent implements OnInit {
     this.employees.fetchData().subscribe(data => this.employeeList = data);
   }
 
-  // POST
-  // PUT
-  // Delete
-
   // Testing Error Handling
   getSampleError(){
     this.employees.fetchData2().subscribe({

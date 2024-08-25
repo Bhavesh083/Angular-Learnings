@@ -1,1 +1,5 @@
-<p>edit-employee works!</p>
+<input #id type="number" placeholder="Enter ID of employee to edit" /> <br>
+<input #name type="text" placeholder="Enter new Name" /> <br> 
+<input #age type="number" placeholder="Enter new Age" /> <br>
+<input #salary type="number" placeholder="Enter new Salary" /> <br>
+<button (click)="edit(id.valueAsNumber, name.value, age.valueAsNumber, salary.valueAsNumber)">Edit Details</button>
