@@ -12,8 +12,8 @@ Commands:-
 - Latest version of angular is v18 (2024 release)    
  
 Pending Angular Topics:-
-Forms, Interceptors
-ngRx (state management), unit test (karma/jasmine), rxJS, Toasters, 
+Forms
+ngRx (state management), unit test (karma/jasmine).
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 :::::::::::::::::::::::::::::::Notes::::::::::::::::::::::::::::::
@@ -487,8 +487,50 @@ options to pass with URL:-
 - withCredentials: Whether this request should be sent with outgoing credentials (cookies).  EX:- withCredentials?: boolean; 
    
 
+------------------------------------X-------------------------------------X--------------------------------------------
 
-Forms, httpClient, Interceptors
+
+INTERCEPTORS:-
+
+- it is a middleware that intercepts all the requests and responses.
+- it is basically used to add the common things to requests like headers like passing the tokens for authentication.
+- used for logging, authentication, error handling
+- When the response (HttpResponse) arrives from the back end the Interceptors can transform it before passing it to our application.
+
+- class implements HttpInterceptor & it implements intercept method.
+- In intercept method we can do anything to the request & use handler to pass request to next step.
+- two parameters passed to an intercept method is HttpRequest & HttpHandler.
+- add the interceptor to the providers array like:
+providers: [
+  { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }
+]
+
+- use map or catch to track requests, response, errors.
+
+example:-
+
+intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request).pipe(
+      catchError((err) => {
+        return throwError(err);
+      }),
+      map( (event : HttpEvent<any>) => {
+        if(event instanceof HttpResponse){
+          console.log("got response"+ JSON.stringify(event));
+        }
+        return event;
+      })
+    );
+  }
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Forms, 
+
+
+
 
 
 

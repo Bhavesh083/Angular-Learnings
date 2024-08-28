@@ -7,6 +7,7 @@ import { employee_ } from '../models/employee';
   providedIn: 'root',
 })
 export class HttpCallsService {
+
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any[]> {
@@ -73,4 +74,8 @@ export class HttpCallsService {
         })
       );
   }
+
+  logErrors : string[] = [];
+  logRequests : any[] = [];
+  logResponse : any[] = [];
 }

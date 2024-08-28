@@ -8,6 +8,7 @@ import { StructuralDirectivesComponent } from './components/structural-directive
 import { ComponentCustomDirectiveComponent } from './components/component-for-custom-directives/component-custom-directive.component';
 import { LifecycleTestComponent } from './components/lifecycle-test/lifecycle-test.component';
 import { LocalstorageTestComponent } from './components/localstorage-test/localstorage-test.component';
+import { LoggingComponent } from './components/logging/logging.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/services', pathMatch: 'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path : 'bindings', component : BindingsComponent},
   { path : 'lifeCycle', component : LifecycleTestComponent},
   { path : 'localStorage', component : LocalstorageTestComponent},
+  { path : 'log', component : LoggingComponent},
   
   // lazy loading modules
   { path : 'login', loadChildren : () => import('./modules/login/login.module').then(m => m.LoginModule)},

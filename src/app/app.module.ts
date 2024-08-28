@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ChildOneComponent } from './components/child-one/child-one.component';
 import { ChildTwoComponent } from './components/child-two/child-two.component';
@@ -18,6 +18,8 @@ import { LifecycleTestComponent } from './components/lifecycle-test/lifecycle-te
 import { CustomStructuralDirective } from './customDirectives/custom-structural.directive';
 import { CustomAttributeDirectiveDirective } from './customDirectives/custom-attribute-directive.directive';
 import { CustomPipe1, CustomPipe2 } from './pipes/custom-pipe.pipe';
+import { LoggerInterceptor } from './logger.interceptor';
+import { LoggingComponent } from './components/logging/logging.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { CustomPipe1, CustomPipe2 } from './pipes/custom-pipe.pipe';
     EmployeeComponent,
     NavsforRoutingComponent,
     LocalstorageTestComponent,
-    LifecycleTestComponent
+    LifecycleTestComponent,
+    LoggingComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { CustomPipe1, CustomPipe2 } from './pipes/custom-pipe.pipe';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: LoggerInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

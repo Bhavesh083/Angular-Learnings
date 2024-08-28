@@ -1,0 +1,23 @@
+<hr>
+<b style="color: rgb(0, 86, 57); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Logging</b> 
+
+
+<p style="color: rgb(216, 216, 216); background-color: rgb(79, 60, 38); width: fit-content; padding: 3px;"> &#9432; Using Interceptor!!</p>
+
+<p style="color: red;">Error Logs</p>
+
+<div *ngFor="let err of errorLogs">
+    <li>{{err}}</li>
+</div>
+
+<p style="color: rgb(109, 0, 0);">Requests Logs</p>
+
+<div *ngFor="let req of requestLogs">
+    <li>{{req}}</li>
+</div>
+
+<p style="color: rgb(5, 157, 58);">Response Logs</p>
+
+<div *ngFor="let res of responseLogs">
+    <li>{{res | json}}</li>
+</div>
