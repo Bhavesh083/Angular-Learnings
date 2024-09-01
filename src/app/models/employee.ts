@@ -4,7 +4,7 @@ export interface employee {
 }
 
 export interface employee_{
-    id : number;
+    employee_id : number;
     employee_name : string;
     employee_salary : number;
     employee_age : number;

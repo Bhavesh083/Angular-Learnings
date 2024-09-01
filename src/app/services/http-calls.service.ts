@@ -15,7 +15,7 @@ export class HttpCallsService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .get<any[]>('https://dummy.restapiexample.com/api/v1/employees', {
+      .get<any[]>('https://localhost:7269/api/Employees', {
         responseType: 'json',
         observe: 'body',
       })
@@ -34,7 +34,7 @@ export class HttpCallsService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .get<employee_>('https://dummy.restapiexample.com/api/v1/employee/' + id)
+      .get<employee_>('https://localhost:7269/api/Employees/'+id)
       .pipe(
         catchError((err) => {
           return throwError(err);
@@ -47,7 +47,7 @@ export class HttpCallsService {
     //const body = JSON.stringify(emp);
 
     return this.http
-      .post<employee_>('https://dummy.restapiexample.com/api/v1/create', emp)
+      .post<employee_>('https://localhost:7269/api/Employees', emp)
       .pipe(
         catchError((err) => {
           return throwError(err);
@@ -57,7 +57,7 @@ export class HttpCallsService {
 
   delete(id: number) {
     return this.http
-      .delete<employee_>('https://dummy.restapiexample.com/api/v1/delete/' + id)
+      .delete<employee_>('https://localhost:7269/api/Employees/' + id)
       .pipe(
         catchError((err) => {
           return throwError(err);
@@ -67,7 +67,7 @@ export class HttpCallsService {
 
   edit(emp: employee_): Observable<employee_> {
     return this.http
-      .put<employee_>('https://dummy.restapiexample.com/api/v1/update/' + emp.id, emp)
+      .put<employee_>('https://localhost:7269/api/Employees/' + emp.employee_id, emp)
       .pipe(
         catchError((err) => {
           return throwError(err);

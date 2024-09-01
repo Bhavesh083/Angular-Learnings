@@ -14,13 +14,13 @@ export class DeleteEmployeeComponent implements OnInit {
   }
 
   deleteEmp(id : number){
-    console.log(id);
     this.http.delete(id).subscribe({
       next: (d) => {
         window.alert("Deleted "+ JSON.stringify(d));
         console.log(d);
       },
       error: (err) => {
+        console.log(err);
       },
       complete: () => {
         console.log('Delete call over');

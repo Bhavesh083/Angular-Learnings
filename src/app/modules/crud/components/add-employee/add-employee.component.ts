@@ -14,7 +14,7 @@ export class AddEmployeeComponent implements OnInit {
     employee_age: 0,
     employee_name: '',
     employee_salary: 0,
-    id: -1,
+    employee_id: -1,
     profile_image: '',
   };
 

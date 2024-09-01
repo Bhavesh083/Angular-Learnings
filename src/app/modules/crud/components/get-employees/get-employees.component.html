@@ -3,7 +3,7 @@
 <b style="color: green; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Enter Employee ID & click enter key to get data  </b>
 <input type="number" placeholder="enter ID" #enteredID (keyup.enter)="getEmployeeByID(enteredID.valueAsNumber)"/>
 
-<div *ngIf="singleEmployee?.id!=-1" style="background-color: bisque; padding: 4px; width: fit-content;">
+<div *ngIf="singleEmployee?.employee_id!=-1" style="background-color: bisque; padding: 4px; width: fit-content;">
     <span> Name : {{singleEmployee.employee_name}} & </span>
     <span> Salary : {{singleEmployee.employee_salary}} </span>
 </div>

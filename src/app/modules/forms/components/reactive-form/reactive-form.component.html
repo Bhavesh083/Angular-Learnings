@@ -30,8 +30,7 @@
         <button type="button" (click)="setFormValues()">Set Default Values</button>
         
         <button [disabled]="sampleForm.invalid" type="submit" class="{{sampleForm.valid? 'valid' : 'invalid'}}">Submit</button>
-
-        <span>{{sampleForm.errors | json}}</span>
+        
     </form>
 
 

@@ -16,12 +16,12 @@ export class EditEmployeeComponent implements OnInit {
     employee_age: 0,
     employee_name: '',
     employee_salary: 0,
-    id: -1,
+    employee_id: -1,
     profile_image: '',
   };
 
   edit(id: number, name: string, age: number, salary: number) {
-    this.edit_employee.id = id;
+    this.edit_employee.employee_id = id;
     this.edit_employee.employee_age = age;
     this.edit_employee.employee_name = name;
     this.edit_employee.employee_salary = salary;

@@ -15,7 +15,7 @@ export class GetEmployeesComponent implements OnInit {
     employee_age: 61,
     employee_name: 'Brielle Williamson',
     employee_salary: 372000,
-    id: -1,
+    employee_id: -2,
     profile_image: '',
   };
 
@@ -30,8 +30,9 @@ export class GetEmployeesComponent implements OnInit {
       next: (d) => {
         // response is coming as object which has key & values, so use below techniques
         // this.employees = Object.keys(d).map( (k:any) => { return d[k]})[1];    OR
-        this.employees = Object.values(d)[1];
-        this.errorMessage = '';
+        // this.employees = Object.values(d)[1];
+        // this.errorMessage = '';
+        this.employees = d;
       },
       error: (err) => {
         if (err.status == 429) {
@@ -48,10 +49,12 @@ export class GetEmployeesComponent implements OnInit {
 
     this.http.getByID(id).subscribe({
       next: (data) => {
-        if (Object.values(data)[1] != null) {
-          this.singleEmployee = Object.values(data)[1];
-          this.errorMessage = '';
-        } else this.errorMessage = 'ID Not Found';
+        // if (Object.values(data)[1] != null) {
+        //   this.singleEmployee = Object.values(data)[1];
+        //   this.errorMessage = '';
+        // } else this.errorMessage = 'ID Not Found';
+        console.log(data);
+        this.singleEmployee = data;
       },
       error: (err) => {
         if (err.status == 429) {
