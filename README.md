@@ -570,7 +570,7 @@ SUMMARY:-
 - To bind form controls to a model, Use [(ngModel)]="variable"
 - To bind form controls to ngForm, Use ngModel & name="somename"
 - To get state of the controls, Use ngModel & #name="ngModel"
-- To get form, Use #formName = "ngForm"
+- To get entire form details, Use #formName = "ngForm"
 - To submit, Use (ngSubmit)="method()"
 
 
@@ -578,17 +578,74 @@ SUMMARY:-
 
 
 ii) Reactive forms or Model Driven forms:
-- most of code is written in class.
-- choose it when with complex forms, complex validation, unit testing is necessary.
-- more readability.
+- most of code & logic resides in class & - more readability.
+- choose it when with complex forms, complex & custom validations, unit testing is necessary.
 
+- import Reactiveforms module
 
+a. An entire form is represented as a formgroup & aach field is represented as formcontrol.
+ In Model ->
+ sampleForm = new FormGroup({
+    name: new FormControl('defaultvalue'),
+    password: new FormControl(' '),
+    confirmPassword: new FormControl(' '),
+ });
+ In Template ->
+ On form tag, [formGroup] = "sampleForm"
+ On control tag, formControlName = "name"
 
+b. To group the form controls, use nested FormGroup(), like we use ngModelGroup in TDF.
+     In model -> 
+          we create a nested formgroup object to group controls,
+          address = new FormGroup({}),
+     In template -> 
+          define formGroupName="address",
+          <div formGroupName="address"> controls  </div>
+  
+c. To set formControl values, use setValue method or patchValue methods.
+     we can use patchValue when setting values for few controls.
+     this.sampleForm.setValue({
+            name: 'Bhavesh', password: 'test', confirmPassword: 'test',
+            address: {
+                 city: 'Nellore', state: 'AP'
+             }
+     });
+   
+d. FormBuilder service:
+    - It provides shortcuts to create the instance of the FormControl, FormGroup or FormArray.
+    - It reduces the code required to write the complex forms.
+    - inject it to constructor as its a service
 
+    - 1st value in array is default value,
+     sampleForm = this.fb.group({
+         name: ['Bhavesh'], password: [''], confirmPassword: [''],
+         address: this.fb.group({
+                  city: ['Nellore'], state: ['AP']
+         })         
+     })
 
+    - 2nd value is Validators rules,
+          name: ['Bhavesh', [Validators.required, Validators.minLength(3), ...]]
 
+e. To access the states of form controls,
+    In template -> sampleForm.get('name').state
+    To check if errors object exists,
+       sampleForm.get('name').errors?.validations
 
+f. Submit form:
+  - check if form is valid or else disable submit button, -> "sampleForm.valid"
+  - add (ngSubmit) to form tag & assign a method to it.
+  - simply use sampleForm.value to see values.
 
+g.  Custom Validation & Cross field Validation:-
+- return null if validation is true.
+- Abstractcontrol is the parent class of formgroup, formcontrols etc.
+- ex:- put validator name in model & 
+export function passwordStrengthValidator(control : AbstractControl) : {[key:string]: any} | null
+{
+    var passwordLength = (control.value).length;
+    return (passwordLength>7)? null : { 'passwordStrengthValidator': 'weak'};
+}
 
 
 

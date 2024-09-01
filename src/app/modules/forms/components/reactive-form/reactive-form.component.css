@@ -1,6 +1,54 @@
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form label{
+    padding: 4px;
+    color: rgb(95, 95, 95);
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.form input, .form select{
+    padding: 5px;
+    margin: 4px 4px 0px 4px;
+}
+
+.form button{
+    padding: 5px;
+    margin-top: 8px;
+    color: rgb(0, 141, 103);
+}
+
+.form span{
+    color: red;
+    font-size: 13px;
+    padding: 2px 5px;
+}
+
 h2{
     color: rgb(0, 86, 57); 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
     padding: 10px;
+}
+
+.formvalue{
+    font-size: 13px;
+}
+
+.address{
+    margin: 10px 0px;
+}
+
+.invalid{
+    color: rgb(174, 0, 0) !important;
+    background-color: rgb(207, 207, 207);
+}
+
+p{
+    color: rgb(0, 97, 97);
+    font-size: 13px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

@@ -1,13 +1,45 @@
 <div>
     <h2>Reactive or Model Driven Form</h2> 
     <hr/>
+
+    <form class="form" [formGroup]="sampleForm" (ngSubmit)="submit()">
+
+        <label>Name</label>
+        <input type="text" formControlName="name"/>
+        <span *ngIf="getName()?.errors">{{getName()?.errors | json}}</span>
+        
+        <label>Password</label>
+        <input type="password" formControlName="password"/>
+        <span *ngIf="getPassword()?.errors">{{getPassword()?.errors | json}}</span>
+        
+        <label>Confirm Password</label>
+        <input type="password" formControlName="confirmPassword"/>
+        <span *ngIf="getConfirmPassword()?.errors">{{getConfirmPassword()?.errors | json}}</span>
+
+        <div formGroupName="address" class="address">
+
+            <label>City</label>
+            <input type="text" formControlName="city"/>
+            
+            <label>State</label>
+            <input type="text" formControlName="state" />
+            
+        </div>
+        <span *ngIf="getCity()?.invalid">Please enter the city name</span>
+
+        <button type="button" (click)="setFormValues()">Set Default Values</button>
+        
+        <button [disabled]="sampleForm.invalid" type="submit" class="{{sampleForm.valid? 'valid' : 'invalid'}}">Submit</button>
+
+        <span>{{sampleForm.errors | json}}</span>
+    </form>
+
+
 </div>
 <br>
 
 
-
-<p></p>
-<span class="formvalue"></span>
-<br>
-
+<hr/>
+<p>&#9432; Using Form Builder as it provides shortcuts to create formgroup, formcontrols etc.</p>
+<p>&#9432; Using Custom Validation to cross check password & password strength</p>
 <hr/>
