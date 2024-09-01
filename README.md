@@ -72,9 +72,11 @@ Binding: It is a connection between model & html template
    - #, to declare a template variable.  & we can pass values to method using #variablename.value
 
 - Two Way Binding:
+   - mechanism to make model & view in sync.
    - It is basically the combination of property binding with event binding:
    - ngModel is used to achieve two way binding, syntax is banana in a box: [(ngModel)]="variable"    --> [] property binding+ ()  event binding
    - ngModel is in a module called FormsModule,, so import it and add it to imports array in module file. 
+   - [ngModel] is for one-way binding only as () is removed from syntax.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ng-content: 
@@ -492,7 +494,7 @@ options to pass with URL:-
 
 INTERCEPTORS:-
 
-- it is a middleware that intercepts all the requests and responses.
+- it is a middleware btw application & backend that intercepts the requests and responses.
 - it is basically used to add the common things to requests like headers like passing the tokens for authentication.
 - used for logging, authentication, error handling
 - When the response (HttpResponse) arrives from the back end the Interceptors can transform it before passing it to our application.
@@ -526,11 +528,73 @@ intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<an
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+FORMS :-
 
-Forms, 
+- In Angular, we have two types of forms: i) Template driven forms ii) Reactive forms.
+
+i) Template driven:
+- most of the code is written in html
+- two way data binding with ngModel directive.
+- Bulky html & minimal component code.
+- unit testing is a challenge.
+- less readability
+
+a. ngForm is assigned to template reference variable of form.
+<form  #formName = "ngForm">
+
+b. To bind data to ngForm, use ngModel directive along with name attribute
+<input ngModel name="email"/> 
+
+c. Binding data to a variable/model, use [(ngModel)] directive
+<input [(ngModel)] = "email"/>
+
+d. ngModelGroup is used to group the form fields, contains a set of ngModel's.
+<div ngModelGroup="address">
+     <input name="state" ngModel/>
+     <input name="city" ngModel/>
+</div>
+
+e. Track State & validity of the controls.
+- When form is loaded, states of a control will be Valid, Untouched, Pristine.
+- these states are actually the classes which are implicitly added.
+- to Access these states, create a template reference variable with value as ngModel & now, you can get state using variable.state
+ex: <input ngModel #name='ngModel />
+      {{name.valid}}
+
+f. Submit form:
+- formvariable.form.valid checks if form is valid or not.
+- ngSubmit event is called when you click submit button in a form.
+
+
+SUMMARY:-
+- To bind form controls to a model, Use [(ngModel)]="variable"
+- To bind form controls to ngForm, Use ngModel & name="somename"
+- To get state of the controls, Use ngModel & #name="ngModel"
+- To get form, Use #formName = "ngForm"
+- To submit, Use (ngSubmit)="method()"
+
+
+-----------------------------X-------------------------------------X-------------------------------------
+
+
+ii) Reactive forms or Model Driven forms:
+- most of code is written in class.
+- choose it when with complex forms, complex validation, unit testing is necessary.
+- more readability.
 
 
 
+
+
+
+
+
+
+
+
+
+Typescript shorthand syntax for creating object:-
+simply pass public parameters to constructor inside class, it automatically creates variable and assign value when object is created.
 
 
 

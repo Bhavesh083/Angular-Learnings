@@ -9,6 +9,8 @@ import { ComponentCustomDirectiveComponent } from './components/component-for-cu
 import { LifecycleTestComponent } from './components/lifecycle-test/lifecycle-test.component';
 import { LocalstorageTestComponent } from './components/localstorage-test/localstorage-test.component';
 import { LoggingComponent } from './components/logging/logging.component';
+import { TemplateDrivenComponent } from './modules/forms/components/template-driven/template-driven.component';
+import { ReactiveFormComponent } from './modules/forms/components/reactive-form/reactive-form.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/services', pathMatch: 'full'},
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path : 'lifeCycle', component : LifecycleTestComponent},
   { path : 'localStorage', component : LocalstorageTestComponent},
   { path : 'log', component : LoggingComponent},
+  { path : 'tdf', component : TemplateDrivenComponent},
+  { path : 'reactiveForms', component : ReactiveFormComponent},
   
   // lazy loading modules
   { path : 'login', loadChildren : () => import('./modules/login/login.module').then(m => m.LoginModule)},

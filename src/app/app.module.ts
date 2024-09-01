@@ -20,6 +20,7 @@ import { CustomAttributeDirectiveDirective } from './customDirectives/custom-att
 import { CustomPipe1, CustomPipe2 } from './pipes/custom-pipe.pipe';
 import { LoggerInterceptor } from './logger.interceptor';
 import { LoggingComponent } from './components/logging/logging.component';
+import { FormTypesModule } from './modules/forms/forms.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LoggingComponent } from './components/logging/logging.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    FormTypesModule,
     AppRoutingModule
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: LoggerInterceptor, multi: true}],

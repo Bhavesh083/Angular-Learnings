@@ -1,0 +1,32 @@
+<div>
+    <h2>Template Driven Form</h2> 
+    <hr/>
+    
+    <form class="form" #sampleForm="ngForm" (ngSubmit)="submit(sampleForm)">
+
+        <label>Name:</label> <span>name field is {{name.touched? 'touched' : 'untouched'}}, {{name.dirty?'dirty':'pristine'}} & {{name.valid?'valid':'invalid'}}</span>
+        <input type="text" placeholder="name" [(ngModel)]="employee.employee_name" name="name" #name="ngModel" required>
+        
+        <label>Age:</label>
+        <input type="number" placeholder="age" [(ngModel)]="employee.employee_age" name="age"/>
+        
+        <label>Salary:</label>
+        <input type="number" placeholder="salary" [(ngModel)]="employee.employee_salary" name="salary" required/>
+
+        <label>ID:</label>
+        <input type="number" placeholder="ID" [(ngModel)]="employee.id" name="id" required/>
+
+        <button [disabled]="!sampleForm.form.valid" type="submit">Submit</button>
+
+    </form>
+
+</div>
+<br>
+
+
+
+<p>Form values using ngForm:-</p>
+<span class="formvalue">{{sampleForm.value | json}}</span>
+<br>
+
+<hr/>
