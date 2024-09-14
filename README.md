@@ -4,6 +4,7 @@ Commands:-
 - Create new angular app -> ng new app_name & use --no-standalone for having module created.
 - Run angular app -> ng serve
 - Create component -> ng g c component_name
+- Create directive -> ng g d dir_name.  
 - Create pipes -> ng g p pipe_name
 - Create module -> ng g m module_name
 - Create service -> ng g s service_name
@@ -11,12 +12,28 @@ Commands:-
 
 - Latest version of angular is v18 (2024 release)    
  
-Pending Angular Topics:-
-Forms
-ngRx (state management), unit test (karma/jasmine).
+Pending Angular Topics:- ngRx (state management), unit test (karma/jasmine).
+
+
+:::::::::::::::::::::::::::::::CONTENTS::::::::::::::::::::::::::::::
+1. Components
+2. Bindings
+3. Directives
+4. Component Interaction
+5. Pipes
+6. Services
+7. Dependency Injection
+8. Routing
+9. LifeCycle Hooks
+10. Modules
+11. Guards
+12. Local Storage
+13. Http Client
+14. Error Handling
+15. Interceptors
+16. Forms
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-:::::::::::::::::::::::::::::::Notes::::::::::::::::::::::::::::::
 
 Components:
 - It is a basic building block of an angular application, where it contains the set of related features.
@@ -24,6 +41,13 @@ Components:
 - A selector is basically a custom tag that is used to render a component.
 - It contains a decorator called @component which is used to define meta data.
 - encapsulation: ViewEncapsulation.None - then styles applies to all components in app, .Emulated - then style applies only in defined component. (default is emulated)
+
+ng-content: 
+- any children of component host element are rendered at location of <ng-content>
+- it is a special placeholder that tells angular where to render content.
+- multiple content placeholders can be used by using select attribute.
+ex:- in parent component, <app-child> <card-title>hello</card-title> <app-child>
+       in child component, <ng-content select="card-title></ng-content>
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Binding: It is a connection between model & html template
@@ -77,14 +101,7 @@ Binding: It is a connection between model & html template
    - ngModel is used to achieve two way binding, syntax is banana in a box: [(ngModel)]="variable"    --> [] property binding+ ()  event binding
    - ngModel is in a module called FormsModule,, so import it and add it to imports array in module file. 
    - [ngModel] is for one-way binding only as () is removed from syntax.
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-ng-content: 
-- any children of component host element are rendered at location of <ng-content>
-- it is a special placeholder that tells angular where to render content.
-- multiple content placeholders can be used by using select attribute.
-ex:- in parent component, <app-child> <card-title>hello</card-title> <app-child>
-       in child component, <ng-content select="card-title></ng-content>
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -228,7 +245,6 @@ Dependency Injection:
 - It is a process of injecting all the dependencies that a class needs.
 - when angular creates a new instance of a component or pipe or directive class, it determines which services or other depencies that class needs by looking at constructor parameter types.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Routing:-
@@ -404,17 +420,15 @@ methods:- setItem(key, value) , getItem(key) , removeItem(key) , clear() - it cl
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Http Client :- It is a module in angular to send requests & get responses from API's.
-
-HTTP:   service ---> GET call ---> Request  ---> DB
+      service ---> GET call ---> Request  ---> DB
       service <-- Observables <-- Response <-- DB
 
 -----------> Observer subcribes the observables to listen for new data <------------
 
 Observables:
-              It is a function that converts ordinary stream of data into observable stream of data. you can think as a wrapper around the ordinary stream of data.
               It is a mechanism to handle asynchronous operations and data streams. It is lazy as it emits values when time progresses.
               It doesn't wait for complete data to be available, when data is partially available it will send to observer.
+              It is a function that converts ordinary stream of data into observable stream of data. you can think as a wrapper around the ordinary stream of data.
 
 Observer: It is consumer of values delivered by an observable using subscribe.
 
@@ -428,33 +442,10 @@ ex: in service,
               return this.http.get<employee[]>("URL");
      }
       in component.ts,
-     serviceObject.getData().subscribe( data => x = data );
+     service.getData().subscribe( data => x = data );
 
--------------------------------X-------------------------------------X--------------------------------------------
-
-Error Handling:-
-
-We can catch the HTTP Errors at three different places :-  Component, Service, Globally
-
-In JavaScript, we use a try-catch to validate a piece of code, and if something comes with an error, it catches.
-But the try-catch is useless with our rxjs code because the errors happen in the subscribe scope, so try-catch doesn't solve anything, so we need to use Rxjs operators.
-
-In Components, you can handle like:
-.subsribe({
- next: (x) => {}, 
- error: (e) => {},
- complete: () => console.log("done");
-})
-
-In Service, we can catch and pass it to subsribed method.
-.pipe( catchError( err => { 
-           return throwError(err);
- } ))
-
-we can also use retry, timeout methods to call the get request again.
-
-
-------------------------------------X-------------------------------------X--------------------------------------------
+*************************
+Http Client :- It is a module in angular to send requests & get responses from API's.
 
 HTTP Methods:-
 
@@ -487,7 +478,29 @@ options to pass with URL:-
 - responseType: The value of responseType determines how the response is parsed.   EX:- responseType: "arraybuffer|json|blob|text";
 - reportProgress: Whether this request should be made in a way that exposes progress events.  EX:- reportProgress?: boolean; 
 - withCredentials: Whether this request should be sent with outgoing credentials (cookies).  EX:- withCredentials?: boolean; 
-   
+-------------------------------X-------------------------------------X--------------------------------------------
+
+Error Handling:-
+
+We can catch the HTTP Errors at three different places :-  Component, Service, Globally
+
+In JavaScript, we use a try-catch to validate a piece of code, and if something comes with an error, it catches.
+But the try-catch is useless with our rxjs code because the errors happen in the subscribe scope, so try-catch doesn't solve anything, so we need to use Rxjs operators.
+
+In Components, you can handle like:
+.subsribe({
+ next: (x) => {}, 
+ error: (e) => {},
+ complete: () => console.log("done");
+})
+
+In Service, we can catch and pass it to subsribed method.
+.pipe( catchError( err => { 
+           return throwError(err);
+ } ))
+
+we can also use retry, timeout methods to call the get request again.
+
 
 ------------------------------------X-------------------------------------X--------------------------------------------
 
@@ -558,7 +571,7 @@ e. Track State & validity of the controls.
 - When form is loaded, states of a control will be Valid, Untouched, Pristine.
 - these states are actually the classes which are implicitly added.
 - to Access these states, create a template reference variable with value as ngModel & now, you can get state using variable.state
-ex: <input ngModel #name='ngModel />
+ex: <input ngModel #name='ngModel' />
       {{name.valid}}
 
 f. Submit form:
@@ -647,8 +660,45 @@ export function passwordStrengthValidator(control : AbstractControl) : {[key:str
     return (passwordLength>7)? null : { 'passwordStrengthValidator': 'weak'};
 }
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ngRX:
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Unit Testing:
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+extra notes:-
 
 Typescript shorthand syntax for creating object:-
 simply pass public parameters to constructor inside class, it automatically creates variable and assign value when object is created.
