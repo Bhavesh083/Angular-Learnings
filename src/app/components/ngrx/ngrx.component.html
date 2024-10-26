@@ -3,7 +3,8 @@
 <b style="color: rgb(0, 86, 57); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Title Color Modifier</b> 
 
 <div class="colorSet">
-    <p>Set the color of our application title : </p>
-    <input placeholder="enter color" type="text" #color/>
+    <p style="margin-right: 5px;">Enter new color</p>
+    <input style="margin-right: 5px;" placeholder="enter color" type="text" #color value=" red"/>
     <button (click)="setColor(color.value)">SET</button>
 </div>
+<button (click)="reset()">Reset color</button>

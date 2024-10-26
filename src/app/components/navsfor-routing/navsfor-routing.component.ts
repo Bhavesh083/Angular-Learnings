@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { trackColor } from 'src/app/models/trackColor';
-import { mainState } from 'src/app/state/bannerColor/color.reducer';
+import { appState } from 'src/app/state/bannerColor/color.reducer';
 import { getColorState, getEntireState } from 'src/app/state/bannerColor/color.selector';
 
 @Component({
@@ -11,25 +11,15 @@ import { getColorState, getEntireState } from 'src/app/state/bannerColor/color.s
 })
 export class NavsforRoutingComponent implements OnInit {
 
-  constructor(private store: Store<mainState>) {
-  }
-
-  ngOnInit(): void {
-    this.store.select<mainState>(getEntireState).subscribe(c => {
-      console.log(c);
-    });
+  constructor(private store: Store<appState>) {
   }
 
   fontColor = "brown";
 
-}
-
-
-
-/*
-ngOnInit(): void {
-    this.store.select(getEntireState).subscribe(c => {
-      console.log(c);
+  ngOnInit(): void {
+    this.store.select(getColorState).subscribe(c => {
+      this.fontColor = c.curColor
     });
   }
-*/
+
+}

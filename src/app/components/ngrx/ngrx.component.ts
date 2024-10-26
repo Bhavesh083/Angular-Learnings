@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { changeColor } from 'src/app/state/bannerColor/color.action';
+import { changeColor, resetColor } from 'src/app/state/bannerColor/color.action';
 
 @Component({
   selector: 'app-ngrx',
@@ -18,4 +18,8 @@ export class NgrxComponent implements OnInit {
     this.store.dispatch(changeColor({color}));
   }
 
+  reset(){
+    this.store.dispatch(resetColor());
+  }
+  
 }

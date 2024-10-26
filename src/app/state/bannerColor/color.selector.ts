@@ -1,11 +1,11 @@
-import { createSelector } from "@ngrx/store";
-import { mainState } from "./color.reducer";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { appState } from "./color.reducer";
 
 
-export const getEntireState = (state: mainState) => state;
+export const getEntireState =  createFeatureSelector<appState>('myState');
 
 
 export const getColorState = createSelector(
     getEntireState,
-    (state: mainState) => state.colorState
+    (state: appState) => state.colorState
 );
