@@ -15,7 +15,6 @@
 
 <p>Size of the array is:- {{ pNumbers | getSize}}</p>
 
-<p>Show values in array which are between 3 & 21:- 
-    <span *ngFor="let n of (pNumbers |  multiplyEach : 3 : 21); let i as index">{{n}} </span>
-
-</p>
+<div>Show values in array which are between 3 & 21:- 
+    <span *ngFor="let n of (pNumbers |  multiplyEach : 3 : 21); index as i"> {{n}}</span>
+</div>
