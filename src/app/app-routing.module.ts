@@ -11,6 +11,7 @@ import { LocalstorageTestComponent } from './components/localstorage-test/locals
 import { LoggingComponent } from './components/logging/logging.component';
 import { TemplateDrivenComponent } from './modules/forms/components/template-driven/template-driven.component';
 import { ReactiveFormComponent } from './modules/forms/components/reactive-form/reactive-form.component';
+import { NgrxComponent } from './components/ngrx/ngrx.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/services', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path : 'log', component : LoggingComponent},
   { path : 'tdf', component : TemplateDrivenComponent},
   { path : 'reactiveForms', component : ReactiveFormComponent},
+  { path : 'ngrx', component : NgrxComponent},
   
   // lazy loading modules
   { path : 'login', loadChildren : () => import('./modules/login/login.module').then(m => m.LoginModule)},

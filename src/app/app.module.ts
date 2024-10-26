@@ -21,6 +21,8 @@ import { CustomPipe1, CustomPipe2 } from './pipes/custom-pipe.pipe';
 import { LoggerInterceptor } from './logger.interceptor';
 import { LoggingComponent } from './components/logging/logging.component';
 import { FormTypesModule } from './modules/forms/forms.module';
+import { StoreModule } from '@ngrx/store';
+import { mainReducer } from './state/bannerColor/color.reducer';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { FormTypesModule } from './modules/forms/forms.module';
     FormsModule,
     HttpClientModule,
     FormTypesModule,
+    StoreModule.forRoot({myState: mainReducer}),
     AppRoutingModule
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: LoggerInterceptor, multi: true}],

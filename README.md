@@ -12,7 +12,7 @@ Commands:-
 
 - Latest version of angular is v18 (2024 release)    
  
-Pending Angular Topics:- ngRx (state management), unit test (karma/jasmine).
+Pending Angular Topics:-  unit test (karma/jasmine).
 
 
 :::::::::::::::::::::::::::::::CONTENTS::::::::::::::::::::::::::::::
@@ -32,7 +32,8 @@ Pending Angular Topics:- ngRx (state management), unit test (karma/jasmine).
 14. Error Handling
 15. Interceptors
 16. Forms
-
+17. ngRX
+18. UnitTesting
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Components:
@@ -83,7 +84,7 @@ Binding: It is a connection between model & html template
     ex: <p [style]="variable">  
         --> here, variable can be 
               - String of styles separated by ;   ex: 'margin:15px ; font-family: Impact'
-              - Object with style names as property and values as style values.  ex: {'margin' : '20px', 'font-family' : 'Impact'}   {[ngClass] -> it can be used when using object}
+              - Object with style names as property and values as style values.  ex: {'margin' : '20px', 'font-family' : 'Impact'}   {[ngStyle] -> it can be used when using object}
 
 - Event Binding:
   - Process of binding the events such as user's actions to a method in a component. 
@@ -662,11 +663,34 @@ export function passwordStrengthValidator(control : AbstractControl) : {[key:str
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-ngRX:
+NgRx: 
 
+- NgRx is a library that provides reactive state management for Angular apps inspired by Redux.
+- to install: ng add @ngrx/store@latest
 
+- Key points to understand:-
 
+State: Think of it as a snapshot of your "app’s data" at any moment. State refers to the data your app needs to manage and display.
 
+Store: It’s like a big container that holds the entire app’s data/states.
+
+Actions: Actions are used to "describe state changes" in the application. They are plain JavaScript objects with a type property that describes the action being performed. 
+
+Reducers: 
+- Reducers are pure functions that receive two arguments, the current State of the application & an Action object, it calculate the new state based on the Action that happened, and return that new State. 
+- Everytime an action is dispatched, ngRx calls reducer function.
+
+Selectors: These are like special tools to fetch specific pieces of data from the store when you need them.
+
+Effects: 
+- Effects are designed to extract any side-effects (such as Network calls) from components and handle potential race conditions.
+- Effects are Observables listening for the inputs and piping them through the "prescription".
+- Those inputs can either be values or Observables of values.
+- Effects perform tasks, which are synchronous or asynchronous.
+
+Flow:- Action is dispatched -> Reducer takes current state & returns new state -> new state is stored in store -> state is fetched using selectors.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -700,8 +724,9 @@ Unit Testing:
 
 extra notes:-
 
-Typescript shorthand syntax for creating object:-
-simply pass public parameters to constructor inside class, it automatically creates variable and assign value when object is created.
-
+-Typescript shorthand syntax for creating object:-
+-simply pass public parameters to constructor inside class, it automatically creates variable and assign value when object is created.
+-Basically, a pure function is a function that only receives arguments, calculates a result (that is always the same for the same arguments), and returns that result.
+ Reducer is a pure function.
 
 
