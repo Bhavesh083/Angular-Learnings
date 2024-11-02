@@ -23,6 +23,7 @@ import { LoggingComponent } from './components/logging/logging.component';
 import { FormTypesModule } from './modules/forms/forms.module';
 import { StoreModule } from '@ngrx/store';
 import { mainReducer } from './state/bannerColor/color.reducer';
+import { LearnTestingComponent } from './components/learn-testing/learn-testing.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { mainReducer } from './state/bannerColor/color.reducer';
     NavsforRoutingComponent,
     LocalstorageTestComponent,
     LifecycleTestComponent,
-    LoggingComponent
+    LoggingComponent,
+    LearnTestingComponent
   ],
   imports: [
     BrowserModule,

@@ -11,8 +11,7 @@ export class CustomAttributeDirectiveDirective {
   //we can pass just the directivename in html element and assign it to different name too.
   @Input('appCustomAttributeDirective') buttonColor : string = '';
 
-  constructor(private er : ElementRef) { 
-  }
+  constructor(private er : ElementRef) {}
 
   @HostListener('mouseover')
   onMouseOver(){

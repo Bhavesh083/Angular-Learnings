@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { trackColor } from 'src/app/models/trackColor';
 import { appState } from 'src/app/state/bannerColor/color.reducer';
 import { getColorState, getEntireState } from 'src/app/state/bannerColor/color.selector';
 

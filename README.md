@@ -11,8 +11,6 @@ Commands:-
 - Create guard -> ng g guard auth_name
 
 - Latest version of angular is v18 (2024 release)    
- 
-Pending Angular Topics:-  unit test (karma/jasmine).
 
 
 :::::::::::::::::::::::::::::::CONTENTS::::::::::::::::::::::::::::::
@@ -674,7 +672,9 @@ State: Think of it as a snapshot of your "app’s data" at any moment. State ref
 
 Store: It’s like a big container that holds the entire app’s data/states.
 
-Actions: Actions are used to "describe state changes" in the application. They are plain JavaScript objects with a type property that describes the action being performed. 
+Actions: 
+- Actions are used to "describe state changes" in the application. 
+- They are plain JavaScript objects with a type property that describes the action being performed & pay load (thats dispatched from component)
 
 Reducers: 
 - Reducers are pure functions that receive two arguments, the current State of the application & an Action object, it calculate the new state based on the Action that happened, and return that new State. 
@@ -690,22 +690,6 @@ Effects:
 
 Flow:- Action is dispatched -> Reducer takes current state & returns new state -> new state is stored in store -> state is fetched using selectors.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -714,10 +698,56 @@ Flow:- Action is dispatched -> Reducer takes current state & returns new state -
 Unit Testing:
 
 
+ii. Spy - use SpyOn & also createSpyObj.
+iii. Before each, Test bed, DI
+ - use testbed for dependencies
+iv. http
+v. component
+vi. dom interaction
+vii. async
+viii. promise
+ix. pipes
+x. custom directives
+xi. routing
+xii. code coverage
+
+- command to execute tests: ng test
+- use describe & it blocks to write test case.
+- f & x are used to ignore or focus on particular test case.
+
+Jasmine:
+- It is a js testing framework that helps you write test cases in a human-readable way.
+- Simply put, Jasmine allows us to write code that tests our functional code to achieve a specific requirement.
+
+Karma:
+- It is a test runner that executes the test we write with Jasmine.
+- It also provides features like live reloading of test cases, code coverage reporting.
 
 
+Spy: 
+- spies focus on testing a particular unit without focusing on its dependencies.
+- also used as a mock object which provides custom return value
+  ex: SpyOn, we can use it to make any function return anything we want.
+- also basically used to track a method or a class, like to determine if a method is called or how many times it was called & with what arguments etc.
+
+- spyOn method:
+ * It is used to stub a property of dependency & also mock the return value of it.
+  * it stubs the original call, that means original method in dependency won't be called.
+  * dependency object should be defined first and then we can use spyOn on it.
+ * Unlike createSpyObj, we create object of the dependency & spy on it instead of creating mock object of it.
+
+- Jasmine.createSpyObj:
+ * It is used to create mock object of dependency that can spy on one or more methods of it.
+ * We also mock the return values of the properties of a mock object.
+ * Unlike spyOn, we do not create original reference of dependency, instead we create a mock object of it.
+
+- Jasmine.createSpy:
+ * It is used when there is no function to spy on or when call to original function would inflict a lag in time.
+ * a dummy method is created & can track calls like a spyOn but there is no implementation.
+ * not useful for mocking.
 
 
+- BeforeAll or BeforeEach can be used to create common objects used in It.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
