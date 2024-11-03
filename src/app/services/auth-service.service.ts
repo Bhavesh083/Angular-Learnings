@@ -12,7 +12,7 @@ export class AuthServiceService {
   isLoggedIn : boolean = true;
 
   checkLogin(){
-    console.log("check called")
+    console.log("checkLogin called");
     return this.isLoggedIn;
   }
 
