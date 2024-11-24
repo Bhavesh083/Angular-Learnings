@@ -696,20 +696,11 @@ Flow:- Action is dispatched -> Reducer takes current state & returns new state -
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Unit Testing:
+It is the process of testing an unit or an individual component which can be logically isolated.
+It is used to ensure the quality of code & expected behaviour.
+It is first level of functional testing.
 
 
-ii. Spy - use SpyOn & also createSpyObj.
-iii. Before each, Test bed, DI
- - use testbed for dependencies
-iv. http
-v. component
-vi. dom interaction
-vii. async
-viii. promise
-ix. pipes
-x. custom directives
-xi. routing
-xii. code coverage
 
 - command to execute tests: ng test
 - use describe & it blocks to write test case.
@@ -723,7 +714,18 @@ Karma:
 - It is a test runner that executes the test we write with Jasmine.
 - It also provides features like live reloading of test cases, code coverage reporting.
 
+***
+TestBed:
+- It is a mechanism to Configure and initialize environment for unit testing and provides methods for creating components and services in unit tests.
+- It's preferred to use for integration testing when Angular component has child components or is strongly tied to HTML.
+- Advantages of TestBed-Free Unit Testing:
+  * Increased Flexibility, Simplified Setup, Performance, Focused Testing, Legacy Code and Third-Party Libraries
+- define components in declarations & dependencies in providers.
+  * declarations: [MyComponent],  // parent and child components can be added too.
+  * providers: [MyService], // Mock or real service
+    providers: [{ provide: MyService, useValue: spy }], // a spyObj can be created & pass it in useValue.
 
+***
 Spy: 
 - spies focus on testing a particular unit without focusing on its dependencies.
 - also used as a mock object which provides custom return value
@@ -746,8 +748,31 @@ Spy:
  * a dummy method is created & can track calls like a spyOn but there is no implementation.
  * not useful for mocking.
 
-
+***
 - BeforeAll or BeforeEach can be used to create common objects used in It.
+
+***
+Testing Http Service:-
+
+- import the HttpClienttestingModule in import it to testbed.
+- import HttptestingController & inject it to variable.
+- now 3A's -> Assign, Act, Assert.
+- first add act statement, call the service & add Assert in it, expect in body of subscribe.
+- add arrange statement, call expectone of controller to check URL or method of the call.
+- then flush the data.
+
+  it('should get All', () => {
+    service.getAll().subscribe(data => {
+      expect(data.length).toBe(3);
+    })
+    const req = httpController.expectOne({
+      url: '',
+      method: 'get'      
+    })
+    req.flush(sendfakedata);
+  });
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

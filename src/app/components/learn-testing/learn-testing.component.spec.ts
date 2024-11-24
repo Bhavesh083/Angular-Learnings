@@ -5,7 +5,7 @@ import {
 } from './learn-testing.component';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
-fdescribe('test methods with no dependencies', () => {
+describe('test methods with no dependencies', () => {
   it('add returns 10', () => {
     const comp = new LearnTestingComponent();
     const value = comp.add();
@@ -19,7 +19,7 @@ fdescribe('test methods with no dependencies', () => {
   });
 });
 
-fdescribe('test methods with dependencies', () => {
+describe('test methods with dependencies', () => {
   let component: LearnTestingComponent2;
   let authService: AuthServiceService;
 
@@ -66,7 +66,7 @@ fdescribe('test methods with dependencies', () => {
 
 
 
-fdescribe('Using TestBed & no dependency', () => {
+describe('Using TestBed & no dependency', () => {
   let component: LearnTestingComponent;
   let fixture: ComponentFixture<LearnTestingComponent>;
 
@@ -92,7 +92,7 @@ fdescribe('Using TestBed & no dependency', () => {
 });
 
 
-fdescribe('Using TestBed & with dependency', () => {
+describe('Using TestBed & with dependency', () => {
   let component: LearnTestingComponent2;
   let fixture: ComponentFixture<LearnTestingComponent2>;
 
